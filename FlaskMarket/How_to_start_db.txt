@@ -1,0 +1,18 @@
+# first step #################################
+
+from market import db, app
+
+with app.app_context():
+    db.create_all()
+
+# second step #################################
+
+from market import db, app
+from market.models import Item
+
+with app.app_context():
+    item1 = Item(name="Laptop", price=1000, barcode="123456789012", description="High-performance laptop")
+    item2 = Item(name="Phone", price=500, barcode="987654321098", description="Latest smartphone")
+    
+    db.session.add_all([item1, item2])
+    db.session.commit()
